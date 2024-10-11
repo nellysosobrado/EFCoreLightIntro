@@ -60,15 +60,8 @@ namespace EFCoreLightIntro
 
                 // Find-metod vet att den ska leta efter objektet
                 // baserat på nyckelfältet. I vårt fall Id
-                var purchaseToDelete = dbContext.Purchases.Find(1);
-                dbContext.Purchases.Remove(purchaseToDelete);
-                dbContext.SaveChanges();
 
-                var allPurchasesAfterDelete = dbContext.Purchases.ToList();
-                foreach (var purchase in allPurchasesAfterDelete)
-                {
-                    Console.WriteLine($" After DELETE:\t {purchase.Product}");
-                }
+                // Homework
             }
         }
     }
