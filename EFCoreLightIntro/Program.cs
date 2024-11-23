@@ -64,7 +64,7 @@ namespace EFCoreLightIntro
 
                 var itemToDelete = dbContext.Purchases.Find(1);
                 dbContext.Purchases.Remove(itemToDelete);
-                dbContext.SaveChanges();
+                dbContext.SaveChanges();//sparar uppdateringen i databasen
                 Console.WriteLine($"\nDeleted product: {itemToDelete.Product} ");
 
                 Console.WriteLine("Database current content: ");
