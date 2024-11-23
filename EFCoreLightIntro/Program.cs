@@ -33,17 +33,18 @@ namespace EFCoreLightIntro
                 // READ ALL READ ALL READ ALL READ ALL READ ALL
                 // READ ALL READ ALL READ ALL READ ALL READ ALL
                 // READ ALL READ ALL READ ALL READ ALL READ ALL
+                Console.WriteLine("Databse current content:");
                 var allPurchases = dbContext.Purchases.ToList();
                 foreach (var purchase in allPurchases)
                 {
-                    Console.WriteLine($" Read ALL:\t {purchase.Product}");
+                    Console.WriteLine($"product id:{purchase.Id} \t product name {purchase.Product}   ");
                 }
 
                 // READ ONE READ ONE READ ONE READ ONE READ ONE
                 // READ ONE READ ONE READ ONE READ ONE READ ONE
                 // READ ONE READ ONE READ ONE READ ONE READ ONE
                 var chosenPurchase = dbContext.Purchases.First(p => p.Id == 1);
-                Console.WriteLine($" Read ONE:\t {chosenPurchase.Product}");
+                Console.WriteLine($"\nRead ONE:\t {chosenPurchase.Product}");
 
                 // UPDATE UPDATE UPDATE UPDATE UPDATE UPDATE
                 // UPDATE UPDATE UPDATE UPDATE UPDATE UPDATE
@@ -52,7 +53,7 @@ namespace EFCoreLightIntro
                 purchaseToUpdate.Price = 4800m; // Ändra priset
                 dbContext.SaveChanges();
 
-                Console.WriteLine($" Updated:\t {purchaseToUpdate.Product} now costs {purchaseToUpdate.Price}");
+                Console.WriteLine($"\nUpdated:\t {purchaseToUpdate.Product} now costs {purchaseToUpdate.Price}");
 
                 // DELETE DELETE DELETE DELETE DELETE DELETE
                 // DELETE DELETE DELETE DELETE DELETE DELETE
@@ -60,6 +61,18 @@ namespace EFCoreLightIntro
 
                 // Find-metod vet att den ska leta efter objektet
                 // baserat på nyckelfältet. I vårt fall Id
+
+                var itemToDelete = dbContext.Purchases.Find(1);
+                dbContext.Purchases.Remove(itemToDelete);
+                dbContext.SaveChanges();
+                Console.WriteLine($"\nDeleted product: {itemToDelete.Product} ");
+
+                Console.WriteLine("Database current content: ");
+                var updatedAllPurchases = dbContext.Purchases.ToList();
+                foreach (var purchase in updatedAllPurchases)
+                {
+                    Console.WriteLine(purchase.Product);
+                }
 
                 // Homework
             }
